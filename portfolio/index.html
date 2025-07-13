@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amogh Sumbad | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease-in-out;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #111;
+      overflow-x: hidden;
+    }
+
+    nav {
+      background: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      font-weight: 700;
+    }
+
+    nav ul li a {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      padding-bottom: 5px;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0%;
+      background-color: #60a9f7;
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav ul li a:hover::after,
+    nav ul li a.active-link::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 300px 30px;
+      display: none;
+    }
+
+   #home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background: url('https://www.transparenttextures.com/patterns/swirl.png');
+  background-size: cover;
+}
+
+
+    #home h1 {
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: #3366cc;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .home-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 15px;
+    }
+
+    .home-icons a img {
+      width: 28px;
+      height: 28px;
+      filter: grayscale(100%);
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .home-icons a:hover img {
+      filter: grayscale(0%);
+      transform: scale(1.2);
+    }
+
+    .project {
+      background: #f2f2f2;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .project img {
+      width: 120px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .project-details {
+      flex: 1;
+    }
+
+    .project a {
+      display: inline-block;
+      margin-right: 30px;
+      color: #60a9f7;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #60a9f7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .back-button:hover {
+      background-color: #4b90d8;
+    }
+
+    #contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+      padding: 40px 600px;
+    }
+
+    .contact-container {
+      background: #f1f1f1;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .contact-container h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .contact-container p {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 12px 0;
+      border: 2px solid #000;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #1a237e;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: #1a237e;
+      color: #fff;
+    }
+  </style>
+
+  <script>
+    function showSection(id) {
+      const sections = ['home', 'projects', 'contact'];
+      sections.forEach(sec => {
+        document.getElementById(sec).style.display = (sec === id) ? 'block' : 'none';
+      });
+
+      // Update active underline
+      const navLinks = document.querySelectorAll('nav ul li a');
+      navLinks.forEach(link => {
+        link.classList.remove('active-link');
+        if (link.textContent.toLowerCase().includes(id)) {
+          link.classList.add('active-link');
+        }
+      });
+    }
+
+    window.onload = () => showSection('home');
+  </script>
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a onclick="showSection('home')">HOME</a></li>
+      <li><a onclick="showSection('projects')">PROJECTS</a></li>
+      <li><a href="resume.pdf" target="_blank">RESUME</a></li>
+      <li><a onclick="showSection('contact')">CONTACT ME</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h1 id="typing-name"></h1>
+
+    <div class="home-icons">
+      <a href="https://www.linkedin.com/in/amoghsumbad" target="_blank"><img src="LinkedIn.png" alt="LinkedIn"></a>
+      <a href="https://github.com/amogh71" target="_blank"><img src="GitHub.png" alt="GitHub"></a>
+      <a href="mailto:amoghsumbad@gmail.com"><img src="Mail.png" alt="Email"></a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project">
+      <img src="Project1 (2).jpeg" alt="Image Caption Generator" />
+      <div class="project-details">
+        <h3>🖼️ Image Caption Generator</h3>
+        <p>A deep learning project using ViT-GPT2 from Hugging Face to generate image captions. Built with PyTorch on Google Colab.</p>
+        <p><strong>Tech:</strong> Python, Colab, ViT, GPT-2, Hugging Face</p>
+        <a href="https://github.com/amogh71/Image_caption_generator" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <div class="project">
+      <img src="Project2.jpeg" alt="Invoice Processing System" />
+      <div class="project-details">
+        <h3>🧾 Invoice Processing System</h3>
+        <p>Spring Boot backend with a React + Material-UI frontend for invoice CRUD operations using MySQL and Hibernate.</p>
+        <p><strong>Tech:</strong> Spring Boot, React, Hibernate, MySQL</p>
+        <a href="https://github.com/amogh71" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <button class="back-button" onclick="showSection('home')">← Back to Home</button>
+  </section>
+
+  <section id="contact">
+    <div class="contact-container">
+      <h2>Get in Touch</h2>
+      <p>or<br />reach out to me via social media</p>
+      <form class="contact-form">
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="text" placeholder="Subject" />
+        <textarea rows="5" placeholder="Your message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <button class="back-button" onclick="showSection('home')" style="margin-top: 20px;">← Back to Home</button>
+    </div>
+  </section>
+
+<script>
+  function typeText(text, elementId, speed = 45) {
+    let i = 0;
+    const el = document.getElementById(elementId);
+    el.textContent = "";
+    const type = () => {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, speed);
+      }
+    };
+    type();
+  }
+
+  window.onload = () => {
+    showSection('home');
+    typeText("Amogh Sumbad", "typing-name", 120);
+  };
+</script>
+
+
+
+
+
+</body>
+</html>
